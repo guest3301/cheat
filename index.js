@@ -1,5 +1,5 @@
 // to create a div with iframe inside it. and set src to the url chatgpt.com, give all the permissions to the iframe, make sure it doesnt conflicts with cors
-// upon pressing CTRL + T, opacity of div should be 1, and 0 when pressed again
+// upon pressing CTRL + Tab + W, opacity of div should be 1, and 0 when pressed again
 // it should be the floating window, moving slowly here and there at random.
 // it should be draggable, and resizable. with a copy button inside div (implement later what to copy)
 // all with javascript. also make sure when script is loaded, url in the address is kept blank and page should not reload, whatever is in address bar should get ""
@@ -116,10 +116,18 @@ document.addEventListener('DOMContentLoaded', function() {
         el.style.transform = `translate3d(${xPos}px, ${yPos}px, 0)`;
     }
     
-    // Toggle visibility with CTRL+T
+    // Toggle visibility with CTRL+Tab+W (changed from CTRL+T)
     let isVisible = false;
+    let ctrlPressed = false;
+    let tabPressed = false;
+    
     document.addEventListener('keydown', function(e) {
-        if (e.ctrlKey && e.key === 't') {
+        if (e.key === 'Control') {
+            ctrlPressed = true;
+        } else if (e.key === 'Tab' && ctrlPressed) {
+            e.preventDefault(); // Prevent browser's default Tab behavior
+            tabPressed = true;
+        } else if (e.key === 'w' && ctrlPressed && tabPressed) {
             e.preventDefault(); // Prevent browser's default behavior
             isVisible = !isVisible;
             floatingDiv.style.opacity = isVisible ? '1' : '0';
@@ -131,6 +139,15 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 stopRandomMovement();
             }
+        }
+    });
+    
+    document.addEventListener('keyup', function(e) {
+        if (e.key === 'Control') {
+            ctrlPressed = false;
+            tabPressed = false;
+        } else if (e.key === 'Tab') {
+            tabPressed = false;
         }
     });
     
