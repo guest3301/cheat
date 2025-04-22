@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Connected</title>
+    <style>
+        /* Ensure the resize handle is visible */
+        #floatingWindow {
+            resize: both;
+            overflow: auto;
+        }
+    
+        body {
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f3f3f3;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .game {
+            font-size: 1rem;
+            color: #0078d7;
+            cursor: pointer;
+        }
+        .game:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>You're not connected</h1>
+    <p>Check your network cables, modem, and router.<br>Reconnect to Wi-Fi or run network diagnostics.</p>
+    <div class="game" onclick="alert('Game coming soon!')">Play the offline game</div>
+</body>
+</html>
